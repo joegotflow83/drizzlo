@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user }}'s Recipes{% endblock title %}
+
+{% block content %}
+<div class="container">
+<h3 class="center-align orange-text">Recipes</h3>
+<a href="{% url 'create_recipe' cookbook_pk %}" id="create-recipe" class="center-align waves-effect orange btn">Create Recipe</a>
+<br><br>
+  <table class="highlight centered responsive-table">
+    <thead>
+      <tr>
+          <th>Name</th>
+          <th>Prep Time</th>
+          <th>Cook Time</th>
+          <th>Image</th>
+      </tr>
+    </thead>
+    {% for recipe in object_list %}
+    <tbody>
+      <tr>
+        <td><a href="{% url 'detail_recipe' recipe.pk %}" id="table-text">{{ recipe.title }}</a></td>
+        <td>{{ recipe.prep_time }} min</td>
+        <td>{{ recipe.cook_time }} min</td>
+        <td><a href="{% url 'detail_recipe' recipe.pk %}"><img src="{{ recipe.image.url }}" height="150" width="200"></a></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

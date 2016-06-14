@@ -1,0 +1,147 @@
+#left-side {
+    padding-left: 60px;
+  }
+
+#right-side {
+    padding-right: 60px
+  }
+
+#item {
+    padding-left: 500px;
+  }
+
+#phone-number {
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+
+#item {
+    padding-left: 500px;
+  }
+
+#signup-form {
+    padding-left: 180px;
+    padding-right: 180px;
+  }
+
+#favorite-title {
+    color: #5c6bc0;
+  }
+
+#collection-word {
+    color: #5c6bc0;
+  }
+
+.white-text {
+    color: white;
+  }
+
+.padding-card {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+
+.grey-text {
+    text-color: #eeeeee;
+  }
+
+#create-recipe {
+    margin-left: 370px;
+  }
+
+#table-text {
+    color: orange;
+  }
+
+.orange-top-rated {
+    background-color: #faf2e7;
+  }
+
+.orange-text {
+    color: #ff9800;
+  }
+
+.header {
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+
+    @keyframes fadein {
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+
+    }
+
+    @-moz-keyframes fadein { /* Firefox */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+
+    @-webkit-keyframes fadein { /* Safari and Chrome */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+
+    @-o-keyframes fadein { /* Opera */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+#cover-title {
+    padding-top: 100px;
+  }
+
+#guest-dashboard {
+    padding: 90px;
+  }
+
+#dashboard-title {
+    padding-left: 100px;
+  }
+
+#guest-cookbook {
+    padding: 90px;
+  }
+
+#create-cb-title {
+    padding-left: 450px;
+  }
+
+#guest-shoppinglist {
+    padding: 90px;
+  }
+
+#shoppinglist-title {
+    padding-left: 220px;
+  }
+
+#steps {
+    padding: 90px;
+  }
+
+#login_form {
+    padding-left: 180px;
+    padding-right: 180px;
+  }
+
+.success-button {
+    margin-left: 550px;
+  }

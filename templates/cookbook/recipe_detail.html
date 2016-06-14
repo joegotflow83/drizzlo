@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block content %}
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br><br><br><br>
+      <h1 class="header center white-text">{{ object.title }}</h1>
+      <br><br>
+    </div>
+  </div>
+  <div class="parallax"><img src="{{ object.image.url }}"></div>
+</div>
+<br><br>
+<div id="container card" class="container">
+  <div class="row">
+    <div class="col s9 m9">
+      <div class="card-content indigo lighten-5 z-depth-3">
+        <div class="container padding-card">
+          <span class="card-title"><h4>{{ object.title }}</h4> {% if object.image %} <img src="{{ object.image.url }}" align="right" height="165" width="180">{% endif %}</span>
+          <span>
+            <a href="{% url 'favorite' object.id %}" class="btn-floating btn-medium indigo lighten-1">
+            <i class="large material-icons">favorite</i>
+            </a>
+          Drizzle This!
+          </span>
+          <br><br>
+          <a href="{% url 'save_recipe' object.id %}" class="waves-effect waves-light orange darken-3 btn">Save Recipe</a>
+          <br><br>
+          <em>Created by: {{ object.user.username }}</em>
+          <p><b>Tags: </b>{{ object.tags }}</p>
+          <p><b>Prep Time: </b>{{ object.prep_time }} min</p>
+          <p><b>Cook Time: </b>{{ object.cook_time }} min</p>
+          <p><b>Ingredients: </b></p>
+          <ol>
+            {% for ingredient in object.ingredient_set.all %}
+            <li>{{ ingredient.ingredient }} <a href="{% url 'add_item' ingredient.ingredient object.pk %}" class="btn-floating btn-tiny waves-effect waves-light orange"><i class="material-icons">add</i></a></li>
+            {% endfor %}
+          </ol>
+          <p><b>Instructions: </b></p>
+          {% for instruction in object.instruction_set.all %}
+            <p>{{ instruction.direction }}</p>
+          {% endfor %}
+          <a href="{% url 'send_recipe_email' object.pk object.user.pk %}" class="waves-effect waves-light indigo btn">Email Yourself Recipe</a>
+          <a href="{% url 'dashboard' %}" class="waves-effect waves-light orange btn">Go Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span><i class="material-icons">comment</i> {{ object.comments.all.count }} comments
+    <i class="material-icons">favorite</i> {{ object.favorites.all.count }} favorites
+  </span>
+</div>
+<br><br><br>
+<div class="container">
+  <h3>Comments</h3>
+  {% if object.comments.all %}
+    {% for comment in object.comments.all %}
+      <b>{{ comment.rating }}</b>
+      <p>{{ comment.response | linebreaks }}</p>
+      <em>Posted by: <a href="{% url 'profile' comment.user.pk %}">{{ comment.user.username }}</a></em>
+      <br><br>
+    {% endfor %}
+  {% endif %}
+  {% if object.user == user %}
+  {% else %}
+</div>
+<div class="comment-form container">
+    <form method="post" action="{% url 'comment' object.id %}">
+      {% csrf_token %}
+      {{ form }}
+      <br><br>
+      <input type="submit" value="Comment" class="waves-effect waves-light indigo btn">
+    </form>
+  {% endif %}
+</div>
+{% block extrascript %}
+  <script src="http://d36qkdzj2aieo9.cloudfront.net/static/js/jquery-2.2.3.min.js"></script>
+  <script src="http://d36qkdzj2aieo9.cloudfront.net/static/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+  </script>
+{% endblock %}
+{% endblock %}

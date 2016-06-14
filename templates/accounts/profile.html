@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user }}'s Profile{% endblock title %}
+
+{% block content %}
+<br>
+<div class="row">
+  <div class="col s4" id="left-side">
+    <ul class="collection">
+    {% if user.userprofile.pic %}
+      <li><img src="{{ user.userprofile.pic.url }}" class="collection-item" height="330" width="370">
+    {% else %}
+      <p>You have not set a profile pic yet.</p>
+    {% endif %}
+    </ul>
+    {% if user.userprofile.is_confirmed %}
+    {% else %}
+      <a class="waves-effect waves-light btn modal-trigger indigo btn" href="#modal1">Verify Email</a>
+    {% endif %}
+    <a href="{% url 'update_profile' user.pk %}" class="waves-effect waves-light btn indigo btn">Update Profile</a>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Verify Email</h4>
+        <p>Please enter the key you recieved in your email</p>
+        <form method="post" action="{% url 'verify' %}">
+          {% csrf_token %}
+          {{ form }}
+          <input type="submit" value="Verify Email" class="waves-effect waves-light indigo lighten-1 btn">
+        </form>
+      </div>
+    </div>
+    <h3>{{ user.username }}</h3>
+    <span><p><i class="material-icons">people</i> <b> <a href="{% url 'display_followers' user.pk %}">Followers:</a> </b>{{ user.userprofile.followers.count }}
+    <b><a href="{% url 'display_following' user.pk %}">Following:</a> </b>{{ user.userprofile.following.count }}</span>
+    <p><i class="material-icons">person</i> <b>About Me:</b> {{ user.userprofile.about_me | linebreaks }}</p>
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header"><i class="material-icons">mail</i>API Token</div>
+        <div class="collapsible-body"><p>{{ token }}</p></div>
+      </li>
+    </ul>
+  </div>
+  <div class="col s8" id="right-side">
+    <div class="card indigo lighten-5 z-depth-3">
+      <div class="card-content">
+        <span class="card-title center-align"><h4>Your Shopping List</h4></span>
+        <br>
+        <ol class="collection indigo lighten-3">
+        {% for item in shopping_list %}
+        <li class="collection-item">{{ item.name }}<a href="{% url 'delete_item' item.pk %}" id="item" class="waves-effect waves-light">Delete Item</a>
+        </li>
+        {% endfor %}
+        </ol>
+        <div class="center-align">
+          <form method="post" action="{% url 'send_sms' %}" id="phone-number">
+            {% csrf_token %}
+            <input type="text" name="number" placeholder="Enter Phone Number (XXX) XXX XXXX">
+            <input type="submit" value="Send Text Message" class="waves-effect waves-light indigo btn">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% block extrascript %}
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <script type="application/javascript">
+    $( document ).ready(function(){
+       $(".button-collapse").sideNav();
+    $('.modal-trigger').leanModal();
+    });
+</script>
+{% endblock %}
+{% endblock %}

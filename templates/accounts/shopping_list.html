@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user }}'s Shopping List'{% endblock title %}
+
+{% block content %}
+<ol>
+{% for item in shopping_list %}
+  <li>{{ item.name  }}</li><a href="{% url 'delete_item' item.pk %}" class="waves-effect waves-light">Delete Item</a>
+  <br><br>
+{% endfor %}
+</ol>
+<a href="{% url 'send_sms' %}" class="waves-effect waves-light btn">Send Message</a>
+{% endblock %}

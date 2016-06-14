@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Drizzlo{% endblock %}
+
+{% block content %}
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center white-text">Drizzlo</h1>
+        <div class="row center">
+          <h5 class="header col s12 light white-text">For Lovers of Food and Wanters of New Recipes</h5>
+        </div>
+        <div class="row center center-align">
+          <a href="{% url 'login' %}" class="btn-large waves-effect waves-light orange">Log In</a>
+          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;
+          <a href="{% url 'signup' %}" class="btn-large waves-effect waves-light orange">Sign Up</a>
+        </div>
+        <br><br>
+      </div>
+    </div>
+    <div class="parallax"><img src="http://d36qkdzj2aieo9.cloudfront.net/static/img/cover.jpeg"></div>
+  </div>
+<div id="guest-dashboard" class="orange lighten-5">
+  <img src="http://d36qkdzj2aieo9.cloudfront.net/static/img/dashboard_new.png" class="materialboxed" height="260" width="340" align="right">
+  <h4 class="center-align">Follow Friends And See Their Recipes</h4>
+  <p class="center-align">Follow your friends and see what recipes they are making.</p>
+  <br><br><br><br><br><br><br>
+</div>
+<div id="guest-cookbook">
+  <img src="http://d36qkdzj2aieo9.cloudfront.net/static/img/cookbook.png" class="materialboxed" height="235" width="320" align="left">
+  <h4 class="center-align">Create Cookbooks With Your Friends</h4>
+  <p class="center-align">Create cookbooks to organize your recipes, and then share them with your friends.</p>
+  <br><br><br><br><br><br><br>
+</div>
+<div id="guest-shoppinglist" class="orange lighten-5">
+  <img src="http://d36qkdzj2aieo9.cloudfront.net/static/img/shoppinglist.png" class="materialboxed" height="235" width="320" align="right">
+  <h4 class="center-align">Create A Shopping List</h4>
+  <p class="center-align">Add ingredients from recipes to your shopping list and then send a text message to yourself.</p>
+  <br><br><br><br><br><br><br>
+</div>
+<div id="how-it-works" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br><br><br>
+      <br><br><br>
+      <h1 class="header center white-text"><a name="how-it-works"></a>How It Works</h1>
+    </div>
+    <div class="parallax"><img src="http://d36qkdzj2aieo9.cloudfront.net/static/img/oranges.jpg"></div>
+  </div>
+</div>
+<div id="steps" class="indigo lighten-5">
+  <img src="http://d36qkdzj2aieo9.cloudfront.net/static/img/berries.jpeg" class="materialboxed" height="235" width="320" align="left">
+  <h4 class="center-align">Four Easy Steps</h4>
+  <ol>
+    <li class="center-align">1. Sign Up</li>
+    <li class="center-align">2. Create Recipes</li>
+    <li class="center-align">3. Follow Friends</li>
+    <li class="center-align">4. Create a Shopping List for the ingredients you do not have</li>
+  </ol>
+  <br><br><br><br><br><br><br>
+</div>
+{% block extrascript %}
+  <script src="http://d36qkdzj2aieo9.cloudfront.net/static/js/jquery-2.2.3.min.js"></script>
+  <script src="http://d36qkdzj2aieo9.cloudfront.net/static/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('.materialboxed').materialbox();
+    });
+  </script>
+{% endblock %}
+{% endblock %}

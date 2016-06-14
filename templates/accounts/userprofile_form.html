@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Profile{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <h4>Update Profile</h4>
+  <form method="post" action="{% url 'update_profile' user.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update Profile" class="waves-effect waves-light btn">
+  </form>
+</div>
+{% endblock %}

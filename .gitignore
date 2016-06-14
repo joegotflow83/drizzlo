@@ -1,0 +1,12 @@
+*DS_Store
+*__pycache__/
+*.pyc
+db.sqlite3
+dump.rdb
+final_project/secrets.py
+media/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

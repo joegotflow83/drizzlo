@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.username }}'s Profile{% endblock title %}
+
+{% block content %}
+<br>
+<div class="row">
+  <div class="col s4" id="left-side">
+    <ul class="collection">
+    {% if object.userprofile.pic %}
+      <li><img src="{{ object.userprofile.pic.url }}" class="collection-item" height="330" width="370">
+    {% else %}
+      <p>This user has not set a profile pic yet.</p>
+    {% endif %}
+    </ul>
+    <h3>{{ object.username }}</h3>
+    <span><p><i class="material-icons">people</i> <b> <a href="{% url 'display_followers' object.pk %}">Followers:</a> </b>{{ object.userprofile.followers.count }}
+    <b><a href="{% url 'display_following' object.pk %}">Following:</a> </b>{{ object.userprofile.following.count }}</span>
+    <div>
+    {% if follow %}
+    <i class="material-icons">person</i><a href='{% url 'unfollow' object.pk %}'>Unfollow</a>
+    {% else %}
+      <i class="material-icons">person add</i><a href="{% url 'follow' object.pk %}">Follow</a>
+    {% endif %}
+    </div>
+    <p><i class="material-icons">person</i> <b>About Me:</b> {{ object.userprofile.about_me | linebreaks }}</p>
+  </div>
+  <div class="col s8" id="right-side">
+    <div class="card indigo lighten-5 z-depth-3">
+      <div class="card-content">
+        <span class="card-title center-align"><h4>{{ user }}'s Recipes</h4></span>
+        <br>
+        <ol class="collection indigo lighten-5">
+        {% for recipe in recipes %}
+          <table class="highlight centered responsive-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Prep Time</th>
+                <th>Cook Time</th>
+                <th>Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ recipe.title }}</td>
+                <td>{{ recipe.prep_time }}</td>
+                <td>{{ recipe.cook_time }}</td>
+                <td><img src="{{ recipe.image.url }}" height="150" width="200">
+              </tr>
+            </tbody>
+          </table>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

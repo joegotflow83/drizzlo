@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Successful Verification{% endblock title %}
+
+{% block content %}
+<h4 class="center-align">Thank you! You have successfully verified your email account.</h4>
+<a href="{% url 'dashboard' %}" class="success-button waves-effect waves-light indigo lighten-1 btn">Go Back</a>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<style>
+  .success-button {
+    margin-left: 550px;
+  }
+</style>
+{% endblock %}

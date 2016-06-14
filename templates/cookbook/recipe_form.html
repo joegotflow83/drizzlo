@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Create Recipe{% endblock title %}
+
+{% block content %}
+<div class="row container">
+  <br>
+  <h4 class="center-align orange-text">Create Your Recipe</h4>
+  <form method="post" action="" enctype="multipart/form-data">
+    <div class="col s6">
+      {% csrf_token %}
+      {{ recipe_form.as_p }}
+      {% for ingredient_form in ingredient_formset %}
+        <div class="ingredient-formset">
+          {{ ingredient_form }}
+        </div>
+      {% endfor %}
+      <br><br><br><br<br>
+    </div>
+    <div class="col s6">
+      <br>
+      <p class="grey-text">Directions</p>
+      <textarea name="direction"></textarea>
+      {{ instruction_formset.management_form }}
+      <br><br><br>
+      <input type="submit" value="Add Recipe" class="waves-effect waves-light orange lighten-1 btn">
+    </div>
+  </form>
+</div>
+{% block extrascript %}
+  <script src="http://d36qkdzj2aieo9.cloudfront.net/static/js/jquery-2.2.3.min.js"></script>
+  <script src="http://d36qkdzj2aieo9.cloudfront.net/static/js/jquery.formset.min.js"></script>
+  <script>
+  </script>
+  <script>
+    $('.ingredient-formset').formset({
+      addText: 'add ingredient',
+      deleteText: 'remove ingredient'
+    });
+  </script>
+{% endblock %}
+{% endblock %}

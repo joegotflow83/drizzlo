@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user }}'s Follwers{% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+  <h4 class="center-align">{{ object.username }}'s Followers</h4>
+  {% for follower in object.userprofile.followers.all %}
+    <table>
+      <tbody>
+        <tr>
+          <td><i class="material-icons">person</i><a href="{% url 'profile' follower.pk %}">{{ follower.user.username }}</a></td>
+          {% if follower.userprofile.pic.url %}
+            <td><a href="{% url 'profile' follower.pk %}"><img src="{{ follower.userprofile.pic.url }}" height="110" width="150"></a></td>
+          {% endif %}
+        </tr>
+      </tbody>
+    </table>
+  {% endfor %}
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+{% endblock %}
+

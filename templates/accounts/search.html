@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Users{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <br>
+  <h3>Search for Users</h3>
+  <form method="get" action="{% url 'search_users' %}">
+    <input type="text" name="query" placeholder="Enter A Username">
+    <input type="submit" value="Search Users" class="waves-effect waves-light indigo btn">
+  </form>
+  {% if users %}
+  {% for user in users %}
+  <table>
+    <tbody>
+      <tr>
+        <td><i class="material-icons">person</i><a href="{% url 'profile' user.pk %}">{{ user.username }}<a/></td>
+        {% if user.userprofile.pic %}
+          <td><a href="{% url 'profile' user.pk %}"><img src="{{ user.userprofile.pic.url }}" height="130" width="170"></a></td>
+        {% endif %}
+      </tr>
+    </tbody>
+  </table>
+  {% endfor %}
+  {% endif %}
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col s9">
+    {% for person in people %}
+      {% if person.user.recipe_set.first.pk %}
+      <img src="{{ person.user.recipe_set.first.image.url }}" id="recipes" align="left" height="400" width="435">
+      <br><br>
+      <p class="orange-text center-align">{{ person.user.recipe_set.first.tag }}</p>
+      <h4 class="center-align">{{ person.user.recipe_set.first.title }}</h4>
+      <p class="center-align"><i class="material-icons">today</i>{{ person.user.recipe_set.first.created }}  <i class="material-icons">comment</i>{{ person.user.recipe_set.last.comments.all.count }} comments</p>
+      <div class="center-align">
+        <em class="center-dashboard">Posted By: {{ person.user.username }}</em><br>
+        <a href="{% url 'detail_recipe' person.user.recipe_set.first.pk %}" class="center-button-dashboard waves-effect orange darken-3 btn">Learn More</a>
+      </div>
+      {% else %}
+      {% endif %}
+      <br><br><br><br><br>
+      <br><br><br><br>
+    {% endfor %}
+  </div>
+  <div class="col s3 orange-top-rated z-depth-1">
+    <h5 class="center-align">Top Rated Recipes</h5>
+    {% for recipe in top_rated %}
+      <p class="center-align">{{ recipe.title }}</p>
+      <a href="{% url 'detail_recipe' recipe.pk %}">
+        <center><img src="{{ recipe.image.url }}" height="150" width="180"></center>
+      </a>
+    <br>
+    {% endfor %}
+    <br><br>
+  </div>
+</div>
+{% endblock %}
