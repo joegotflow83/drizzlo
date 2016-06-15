@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-from secrets import AWS_KEY, AWS_SECRET, DB_PASS
+from secrets import AWS_KEY, AWS_SECRET, DB_PASS, PROD_KEY
 
 import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sl7o@(%ro%@(7)(881-b@#g-&txh*quivb)o*xkyk-1#kcz0)q'
+SECRET_KEY = PROD_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
